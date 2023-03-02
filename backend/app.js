@@ -5,6 +5,9 @@ const sauceRouter = require('./routes/sauce');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
+require('dotenv').config();
+const password = process.env.PASSWORD;
+const user = process.env.USER;
 
 app.use(bodyParser.json());
 
@@ -21,7 +24,7 @@ app.use((req, res, next) => {
  
 
 
- mongoose.connect('mongodb+srv://zans69:Passw0rd69210*@cluster0.chtd4gb.mongodb.net/?retryWrites=true&w=majority',
+ mongoose.connect(`mongodb+srv://${user}:${password}@cluster0.chtd4gb.mongodb.net/?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
